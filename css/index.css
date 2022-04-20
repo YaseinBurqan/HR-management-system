@@ -42,10 +42,10 @@ header ul li a:hover {
 }
 
 footer {
+  margin: bottom 0px; ;
   background-color: #914400;
   height: auto;
   font-family: "Open Sans";
-  padding: 40px;
   color: rgb(0, 0, 0);
 }
 
