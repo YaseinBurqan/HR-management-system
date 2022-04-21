@@ -55,6 +55,11 @@ body {
   font-size: 19px;
 }
 
+.submit {
+  margin-top: 1rem;
+  font-size: 15px;
+}
+
 footer {
   margin: bottom 0px;
   background-color: #914400;
