@@ -2,7 +2,7 @@
 
 let employeeArray = [];
 
-function Employee(Id, name, department, level, image) {
+function Employee(Id, name, department, level, image, salary) {
   this.employeeId = Id;
   this.employeeName = name;
   this.employeeDepartment = department;
@@ -44,4 +44,43 @@ const idGenerate = (employee) => {
       }
     }
   } while (idArray == [...new Set(idArray)]);
+};
+
+submit.addEventListener("click", (event) => {
+  event.preventDefault();
+  let employeeName = event.target.form[0].value;
+  let employeeDepartment = event.target.form[1].value;
+  let employeeLevel = event.target.form[2].value;
+  let employeeImage = event.target.form[3].value;
+  let newEmployee = new Employee(0, name, department, level, image);
+  Employee.push(newEmployee);
+  idGenerate(Employee);
+  setLocalStorage(newEmployee);
+  main.appendChild(newEmployee.render());
+});
+
+Employee.prototype.render = function () {
+  let div = document.createElement("div");
+  let childDiv = document.createElement("div");
+  let employeeImage = document.createElement("img");
+  let employeeId = document.createElement("h4");
+  let employeeName = document.createElement("h4");
+  let employeeDepartment = document.createElement("h3");
+  let employeeLevel = document.createElement("h3");
+  let employeeSalary = document.createElement("h2");
+  employeeImage.setAttribute("src", this.employeeImage);
+  employeeName.textContent = `Employee: ${this.employeeName}`;
+  employeeId.textContent = `ID: ${this.employeeId}`;
+  employeeDepartment.textContent = `Department: ${this.employeeDepartment}`;
+  employeeLevel.textContent = `Level: ${this.employeeLevel}`;
+  employeeSalary.textContent = `Net Salary: ${this.employeeSalary}`;
+  childDiv.appendChild(employeeId);
+  childDiv.appendChild(employeeName);
+  childDiv.appendChild(employeeLevel);
+  childDiv.appendChild(employeeDepartment);
+  childDiv.appendChild(employeeSalary);
+  div.appendChild(employeeImage);
+  div.appendChild(childDiv);
+  div.classList.add("employee-card");
+  return div;
 };
