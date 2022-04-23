@@ -51,8 +51,23 @@ body {
   justify-content: center;
   margin-top: 3rem;
   display: flex;
-  line-height: 30px;
-  font-size: 19px;
+}
+
+#employeeList {
+  justify-content: left;
+  margin: 3rem;
+  text-align: center;
+  background-color: rgb(247, 161, 86);
+  width: 90%;
+  overflow-y: scroll;
+}
+
+.employeeList {
+  display: inline-block;
+  text-align: left;
+  margin: 3rem;
+  background-color: rgb(254, 254, 254);
+  border-radius: 1rem;
 }
 
 footer {
