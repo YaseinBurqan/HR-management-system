@@ -53,7 +53,7 @@ body {
   display: flex;
 }
 
-#employeeList {
+#employeeListForm {
   justify-content: left;
   margin: 3rem;
   text-align: center;
@@ -63,16 +63,29 @@ body {
 }
 
 .employeeList {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   text-align: left;
   margin: 3rem;
   background-color: rgb(254, 254, 254);
   border-radius: 1rem;
 }
 
-.submit {
-  margin-top: 1rem;
-  font-size: 15px;
+.employeeCard {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+}
+
+img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 }
 
 footer {
