@@ -29,7 +29,7 @@ Employee.prototype.salary = function () {
 };
 
 new Employee(1000, "Ghazi Samer", "Administration", "Senior", "../assets/1000.jpg");
-new Employee(1001, "Lana Ali", "Finance", "Senior", "../assets/1001 .jpg");
+new Employee(1001, "Lana Ali", "Finance", "Senior", "../assets/1001.jpg");
 new Employee(1002, "Tamara Ayoub", "Marketing", "Senior", "../assets/1002.jpg");
 new Employee(1003, "Safi Walid", "Administration", "Mid-Senior", "../assets/1003.jpg");
 new Employee(1004, "Omar Zaid", "Development", "Senior", "../assets/1004.jpg");
@@ -38,7 +38,7 @@ new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior", "../assets/1006.jpg");
 
 Employee.prototype.render = function () {
   console.log(this.employeeName);
-  document.write(`<h3>Name :${this.employeeName}, ID : ${this.d}<h3/>` < br > `Department : ${this.employeeDepartment}, Level : ${this.employeeLevel}`);
+  document.write(`<h3>ID : ${this.d} ,Name : ${this.employeeName} <h3/>` < br > `Department : ${this.employeeDepartment}, Level : ${this.employeeLevel}`);
 };
 
 if (localStorage.getItem("data") == null) {
@@ -51,10 +51,6 @@ const setLocalStorage = (ele) => {
   localStorage.setItem("data", JSON.stringify(setter));
 };
 
-/* const generateId = () => {
-  return Math.floor(Math.random() * 1000 + 1000);
-};
- */
 Employee.prototype.render = function () {
   let div = document.createElement("div");
   let childDiv = document.createElement("div");
@@ -64,20 +60,17 @@ Employee.prototype.render = function () {
   let employeeDepartment = document.createElement("h3");
   let employeeLevel = document.createElement("h3");
   let employeeSalary = document.createElement("h2");
-
   employeeImage.setAttribute("src", this.employeeImage);
   employeeName.textContent = `Employee: ${this.employeeName}`;
   employeeId.textContent = `ID: ${this.employeeId}`;
   employeeDepartment.textContent = `Department: ${this.employeeDepartment}`;
   employeeLevel.textContent = `Level: ${this.employeeLevel}`;
   employeeSalary.textContent = `Salary: ${this.salary()}`;
-
   childDiv.appendChild(employeeId);
   childDiv.appendChild(employeeName);
   childDiv.appendChild(employeeLevel);
   childDiv.appendChild(employeeDepartment);
   childDiv.appendChild(employeeSalary);
-
   div.appendChild(employeeImage);
   div.appendChild(childDiv);
   div.classList.add("employeeCard");
@@ -87,12 +80,10 @@ Employee.prototype.render = function () {
 submit.addEventListener("click", (event) => {
   event.preventDefault();
   console.log(employeeForm);
-
   let employeeName = event.target.form[0].value;
   let employeeDepartment = event.target.form[1].value;
   let employeeLevel = event.target.form[2].value;
   let employeeImage = event.target.form[3].value;
-
   let newEmployee = new Employee(0, employeeName, employeeDepartment, employeeLevel, employeeImage);
   newEmployee.generateEmployeeId();
   employeeArray.push(newEmployee);
@@ -109,3 +100,22 @@ const initialRender = () => {
 };
 
 initialRender();
+
+let filteredData = (event) => {
+  main.innerHTML = "";
+  getLocalStorageData()
+    .filter((ele) => ele.employeeDepartment == event.target.value)
+    .forEach((ele) => {
+      main.appendChild(ele.render());
+    });
+
+  event.target.value == "allDepartment"
+    ? getLocalStorageData().forEach((ele) => {
+        main.appendChild(ele.render());
+      })
+    : "";
+};
+
+getLocalStorageData().forEach((ele) => {
+  main.appendChild(ele.render());
+});
