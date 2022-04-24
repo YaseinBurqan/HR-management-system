@@ -74,6 +74,7 @@ body {
 }
 
 .employeeCard {
+  margin: 10PX 10PX;
   display: flex;
   flex-direction: column;
   width: 25%;
