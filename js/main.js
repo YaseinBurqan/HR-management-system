@@ -108,7 +108,6 @@ let filteredData = (event) => {
     .forEach((ele) => {
       main.appendChild(ele.render());
     });
-
   event.target.value == "allDepartment"
     ? getLocalStorageData().forEach((ele) => {
         main.appendChild(ele.render());
