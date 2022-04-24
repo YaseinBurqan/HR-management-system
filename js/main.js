@@ -37,8 +37,8 @@ new Employee(1005, "Rana Saleh", "Development", "Junior", "../assets/1005.jpg");
 new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior", "../assets/1006.jpg");
 
 Employee.prototype.render = function () {
+  document.write(`<h3>ID : ${this.employeeId} ,Name : ${this.employeeName} <h3/>` < br > `Department : ${this.employeeDepartment}, Level : ${this.employeeLevel}`);
   console.log(this.employeeName);
-  document.write(`<h3>ID : ${this.d} ,Name : ${this.employeeName} <h3/>` < br > `Department : ${this.employeeDepartment}, Level : ${this.employeeLevel}`);
 };
 
 if (localStorage.getItem("data") == null) {
@@ -50,6 +50,16 @@ const setLocalStorage = (ele) => {
   setter.push(ele);
   localStorage.setItem("data", JSON.stringify(setter));
 };
+
+const arrayTest = [];
+
+const getLocalStorageData = JSON.parse(localStorage.getItem("data"));
+for (let index = 0; index < getLocalStorageData.length; index++) {
+  let newEmployee = new Employee(getLocalStorageData[index].employeeId, getLocalStorageData[index].employeeName, getLocalStorageData[index].employeeDepartment, getLocalStorageData[index].employeeLevel, getLocalStorageData[index].employeeImage);
+  arrayTest.push(newEmployee);
+}
+
+console.log(arrayTest, "yasein");
 
 Employee.prototype.render = function () {
   let div = document.createElement("div");
@@ -92,8 +102,7 @@ submit.addEventListener("click", (event) => {
 });
 
 const initialRender = () => {
-  console.log(employeeArray);
-  employeeArray.map((employee) => {
+  arrayTest.map((employee) => {
     console.log(employeeArray);
     main.appendChild(employee.render());
   });
@@ -103,18 +112,21 @@ initialRender();
 
 let filteredData = (event) => {
   main.innerHTML = "";
-  getLocalStorageData()
-    .filter((ele) => ele.employeeDepartment == event.target.value)
+  arrayTest
+    .filter((ele) => {
+      return ele.employeeDepartment == event.target.value;
+    })
     .forEach((ele) => {
       main.appendChild(ele.render());
     });
+
   event.target.value == "allDepartment"
-    ? getLocalStorageData().forEach((ele) => {
+    ? arrayTest.forEach((ele) => {
         main.appendChild(ele.render());
       })
     : "";
 };
 
-getLocalStorageData().forEach((ele) => {
+arrayTest.forEach((ele) => {
   main.appendChild(ele.render());
 });
