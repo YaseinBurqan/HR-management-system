@@ -127,6 +127,6 @@ let filteredData = (event) => {
     : "";
 };
 
-arrayTest.forEach((ele) => {
+/* arrayTest.forEach((ele) => {
   main.appendChild(ele.render());
-});
+}); */
