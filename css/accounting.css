@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 header {
   width: 100%;
   height: 75px;
@@ -39,6 +40,15 @@ header ul li a {
 }
 header ul li a:hover {
   color: #c0d96f;
+}
+
+.accountingTable {
+  justify-content: space-between;
+  table-layout: fixed;
+  text-align: left;
+  border: #0b0000;
+  margin: auto;
+  padding: 20px;
 }
 
 footer {
